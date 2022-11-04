@@ -40,6 +40,16 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+assets/
+css/
+.vscode/
+index.html
+script.js
+.DS_Store
+.DS_Store:Zone.Identifier
+index.html:Zone.Identifier
+script.js:Zone.Identifier
+
 
 # TypeScript v1 declaration files
 typings/
