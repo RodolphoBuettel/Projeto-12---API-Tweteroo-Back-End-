@@ -13,12 +13,15 @@ app.post('/sign-up', (req, res) => {
 	const { username, avatar } = req.body;
 
 	if (!username || !avatar) {
-		res.status(400).send(alert('Todos os campos são obrigatórios!'));
+		res.status(400).send('Todos os campos são obrigatórios!');
 		return;
 	}
 
     avatarUser = avatar;
-		users.push(req.body);
+
+	const userLogin = req.body;
+
+	users.push(userLogin);
 
 	res.send("OK");
 });
@@ -27,19 +30,26 @@ app.post('/tweets', (req, res) => {
 	const { username, tweet } = req.body;
 
 	if (!username || !tweet) {
-		res.status(400).send(alert('Todos os campos são obrigatórios!'));
+		res.status(400).send('Todos os campos são obrigatórios!');
 		return;
 	}
 
-  const avatarString = avatarUser.toString();
-  console.log(avatarString);
-	tweets.push({ username, avatar: avatarString, tweet });
+   const avatarString = avatarUser.toString();
+
+   const postTwitter = {
+	username,
+	avatar: avatarString, 
+	tweet
+   };
+
+	tweets.push(postTwitter);
 
 	res.send("OK");
 });
 
 app.get('/tweets', (req, res) => {
-	res.send(tweets);
+	const lastTweets = tweets.slice(-10);
+	res.send(lastTweets);
 });
 
 app.listen(5000, () => console.log('Running server in port 5000'));
